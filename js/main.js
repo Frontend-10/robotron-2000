@@ -31,8 +31,12 @@ const parts = {
     }
 };
 
+imageIndex = 0
+
 const controllers = document.querySelectorAll('[data-controller]');
 const statistics = document.querySelectorAll('[data-statistics]');
+const robotron = document.getElementById('robotron');
+
 
 controllers.forEach((element) => { 
     element.addEventListener('click', (event) => {
@@ -40,6 +44,15 @@ controllers.forEach((element) => {
         updateStatistics(event.target.dataset.part);
     })
 });
+
+robotron.addEventListener('click', () => {
+    imageIndex < 5 ? imageIndex++ : imageIndex = 0;
+    robotron.src = changeImage(imageIndex);
+})
+
+function changeImage(index) {
+    return `./img/robotron-${index}.png`
+}
 
 function manageAttributes(value, controller) {
     const counter = controller.querySelector('[data-counter]');
